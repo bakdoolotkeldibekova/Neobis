@@ -1,0 +1,7 @@
+POJO=>Computer:
+	POJO=>Hdd
+	POJO=>Cpu
+	POJO=>Ram
+	POJO=>Os
+POJO=>Order
+POJO=>Payment
