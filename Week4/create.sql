@@ -60,7 +60,7 @@ create table Orders(
 id integer primary key,
 phoneNumOfClient integer unique,
 Computer_id integer not null unique,
-Payment_id integer not null REFERENCES Payment(id),
+Payment_id integer not null,
 date timestamp not null,
 FOREIGN KEY (Computer_id) REFERENCES Computer(id) ON DELETE NO ACTION,
 FOREIGN KEY (Payment_id) REFERENCES Payment(id) ON DELETE NO ACTION
