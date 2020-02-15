@@ -1,14 +1,23 @@
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
+
 import java.util.List;
 
 public class Main {
     private static SessionFactory sessionFactory;
+    private static ServiceRegistry serviceRegistry;
 
-    public static void main(String[] args) {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
+    public static void main(String[] args) throws HibernateException {
+        Configuration configuration = new Configuration();
+        configuration.configure();
+
+        sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
         Main cpu = new Main();
 
         //Adding Cpu to the DB:
