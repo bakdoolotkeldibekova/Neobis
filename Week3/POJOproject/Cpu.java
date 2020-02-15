@@ -8,11 +8,11 @@ public class Cpu {
 
     //constructors
     public Cpu(){};
-    public Cpu(String m, int n, double f, int id){
-        model = m;
-        nucleus = n;
-        frequency = f;
+    public Cpu(int id, String model, int nucleus, double frequency){
         this.id = id;
+        this.model = model;
+        this.nucleus = nucleus;
+        this.frequency = frequency;
     }
 
     //getters&setters
