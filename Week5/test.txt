@@ -1,1 +1,18 @@
-i will write
+
+1. opened a Maven Project and automatically opened pom.xml file
+
+2. added dependencies: (org.hibernate:hibernate-core:4.3.6.Final)
+                       (mysql:mysql-connector-java:8.0.19)
+                       
+3. created hibernate.cfg.xml file. => (Database Connection,  Mapping With Cpu class)
+
+4. created com.jcg.hibernate.maven package. 
+
+5. created sql package => Queries.sql(table cpu)
+
+6. created Cpu class. using my POJO class, mapped Cpu class with table cpu.
+
+7. created class AppMain(this is my runner class)
+
+8. (6)this class helps in creating the **SessionFactory** from the Hibernate configuration file and interacts with the database to perform the Hibernate operation.
+   i tried to add data to the Database on Java
