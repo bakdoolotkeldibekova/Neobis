@@ -1,23 +1,28 @@
 package comp;
 
-import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Data
 @Entity
+@Table(name = "cpu", schema = "spring_data_jpa_example")
 class Cpu {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    private @Id @GeneratedValue int id;
+    @Column(name = "model")
     private String model;
+
+    @Column(name = "nucleus")
     private int nucleus;
+
+    @Column(name = "frequency")
     private double frequency;
 
     public Cpu(){};
-    public Cpu(int id, String model, int nucleus, double frequency){
-        this.id = id;
+    public Cpu(String model, int nucleus, double frequency){
         this.model = model;
         this.nucleus = nucleus;
         this.frequency = frequency;
