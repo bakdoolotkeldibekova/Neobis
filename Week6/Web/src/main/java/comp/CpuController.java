@@ -1,62 +1,54 @@
 package comp;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-class CpuController {
+@Controller
+@RequestMapping(path = "/cpu")
+public class CpuController {
 
-    private final CpuRepository repository;
+    @Autowired
+    private CpuRepository cpuRepository;
 
-    CpuController(CpuRepository repository) {
-        this.repository = repository;
+    @PostMapping
+    public Cpu create(@RequestBody Cpu cpu) {
+        return cpuRepository.save(cpu);
     }
 
-    // Aggregate root
-
-    @GetMapping("/cpu")
-    List<Cpu> all() {
-        return repository.findAll();
+    @RequestMapping(value = "/addCpu", method = RequestMethod.POST)
+    public @ResponseBody boolean addCpu (@RequestParam String model, @RequestParam int nucleus, @RequestParam double frequency) {
+        Cpu cpu = new Cpu(model, nucleus, frequency);
+        cpuRepository.save(cpu);
+        return true;
     }
 
-    @PostMapping("/cpu")
-    Cpu newCpu(@RequestBody Cpu newCpu) {
-        return repository.save(newCpu);
+    @RequestMapping(value = "/deleteCpu/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteCpu(@PathVariable("id") int id) {
+        return cpuRepository.findById(id)
+                .map(record -> {
+                    cpuRepository.deleteById(id);
+                    return ResponseEntity.ok().build();
+                }).orElse(ResponseEntity.notFound().build());
     }
 
-    // Single item
-
-    @GetMapping("/cpu/{id}")
-    Cpu one(@PathVariable int id) {
-
-        return repository.findById(id)
-                .orElseThrow(() -> new CpuNotFoundException(id));
+    @RequestMapping(value = "/updateCpu/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Cpu> updateCpu(@PathVariable("id") int id,
+                                                   @RequestBody Cpu cpu) {
+        return cpuRepository.findById(id)
+                .map(record -> {
+                    record.setModel(cpu.getModel());
+                    record.setNucleus(cpu.getNucleus());
+                    record.setFrequency(cpu.getFrequency());
+                    Cpu put = cpuRepository.save(cpu);
+                    return ResponseEntity.ok().body(put);
+                }).orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/cpu/{id}")
-    Cpu replaceCpu(@RequestBody Cpu newCpu, @PathVariable int id) {
-        return repository.findById(id)
-                .map(cpu -> {
-                    cpu.setModel(newCpu.getModel());
-                    cpu.setNucleus(newCpu.getNucleus());
-                    cpu.setFrequency(newCpu.getFrequency());
-                    return repository.save(cpu);
-                })
-                .orElseGet(() -> {
-                    newCpu.setId(id);
-                    return repository.save(newCpu);
-                });
-    }
-
-    @DeleteMapping("/cpu/{id}")
-    void deleteCpu(@PathVariable int id) {
-        repository.deleteById(id);
+    @RequestMapping(value = "/getAllCpu", method = RequestMethod.GET)
+    public @ResponseBody Iterable<Cpu> getAllCpu() {
+        return cpuRepository.findAll();
     }
 }
