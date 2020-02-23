@@ -1,30 +1,20 @@
-package com.jcg.hibernate.maven;
+package Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "cpu")
 public class Cpu {
-	@Id
-	@Column(name = "id")
 	private int id;
-
-	@Column(name = "model")
 	private String model;
-
-	@Column(name = "nucleus")
 	private int nucleus;
-
-	@Column(name = "frequency")
 	private double frequency;
 
 	//constructors
 	public Cpu(){};
 	public Cpu(int id, String model, int nucleus, double frequency){
 		this.id = id;
+		this.model = model;
+		this.nucleus = nucleus;
+		this.frequency = frequency;
+	}
+	public Cpu(String model, int nucleus, double frequency){
 		this.model = model;
 		this.nucleus = nucleus;
 		this.frequency = frequency;
@@ -56,5 +46,15 @@ public class Cpu {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Cpu{" +
+				"id=" + id +
+				", model='" + model + '\'' +
+				", nucleus=" + nucleus +
+				", frequency=" + frequency +
+				'}';
 	}
 }
