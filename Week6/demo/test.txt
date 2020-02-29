@@ -1,0 +1,7 @@
+1. GET http://localhost:8080/cpu/getAllCpu
+
+2. PUT http://localhost:8080/cpu/updateCpu/{id}
+
+3. POST http://localhost:8080/cpu/addCpu
+
+4. DELETE http://localhost:8080/cpu/deleteCpu/{id}
