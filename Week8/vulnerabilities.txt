@@ -1,0 +1,10 @@
+
+application.properties => deleted password (an exposing information)
+
+SQL injection
+
+nucleus type:
+ from integer->smallint => for the reliability of the data
+
+
+(All fixes are in Week7)
