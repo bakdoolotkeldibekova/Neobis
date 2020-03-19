@@ -1,0 +1,10 @@
+Maven Test.
+
+Run all test classes:
+Terminal => mvn test
+
+Run a single test class CpuControllerTest:
+Terminal => mvn -Dtest=CpuControllerTest test
+
+Run a single test method testGetAllCpu() from the test class CpuControllerTest:
+Terminal => mvn -Dtest=CpuControllerTest#testGetAllCpu test
