@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+  redis:
+    image: "springdemo:latest"
+  db:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: 
+       MYSQL_DATABASE:
+       MYSQL_USER:
+       MYSQL_PASSWORD:
+  volumes:
+      db_data: {}
