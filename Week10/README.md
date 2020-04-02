@@ -1,9 +1,9 @@
 
 run the Docker Desktop
 
-cmd => **$ cd downloads/demo**      //go to the root project <br>
-       **$ mvn clean**
-       **$ mvn install**
+cmd => * **$ cd downloads/demo**      //go to the root project
+       * **$ mvn clean**
+       * **$ mvn install**
        **$ docker build -f Dockerfile -t springdemo .**
        **$ docker images**          //checking, was 'springdemo' repository added  =>Такая команда позволяет вывести список образов
        **$ docker run -p 8080:8080 -t springdemo**
