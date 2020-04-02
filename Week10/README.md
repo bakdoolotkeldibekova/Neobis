@@ -7,11 +7,11 @@ cmd => **$ cd downloads/demo**      //go to the root project  <br>
        **$ docker build -f Dockerfile -t springdemo .**<br>
        **$ docker images**          //checking, was 'springdemo' repository added  =>Такая команда позволяет вывести список образов<br>
        **$ docker run -p 8080:8080 -t springdemo**<br>
-                   ^
-                   |
+                   ^<br>
+                   |<br>
        Dockerfile---<br>
        Docker-compose -----<br>
-                          |
+                          |<br>
        **$ docker-compose up**       <br>
        Полезные команды:<br>
        **$ docker-compose down**  //Эта команда позволяет останавливать и удалять контейнеры и другие ресурсы, <br>
