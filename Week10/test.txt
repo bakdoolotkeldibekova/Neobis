@@ -1,0 +1,5 @@
+$ docker run -p 8080:8080 -t springdemo
+
+run this code
+
+and go to the browser -> ex: http://localhost:8080/cpu/getCpu -> list of cpu in the database
