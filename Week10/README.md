@@ -1,7 +1,7 @@
 
 run the Docker Desktop
 
-cmd => **$ cd downloads/demo**      //go to the root project
+cmd => **$ cd downloads/demo**      //go to the root project <br>
        **$ mvn clean**
        **$ mvn install**
        **$ docker build -f Dockerfile -t springdemo .**
